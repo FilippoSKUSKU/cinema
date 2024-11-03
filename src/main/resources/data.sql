@@ -1,0 +1,7 @@
+insert into attore (nome, cognome,data_creazione) values('morgan','freeman',CURRENT_TIMESTAMP),('tim','robbins',CURRENT_TIMESTAMP),('scarlett','johansson',CURRENT_TIMESTAMP),('sabrina','ferilli',CURRENT_TIMESTAMP),('nanni','moretti',CURRENT_TIMESTAMP),('george','clooney',CURRENT_TIMESTAMP),('brad','pitt',CURRENT_TIMESTAMP),('morgan','freeman',CURRENT_TIMESTAMP),('tony','servillo',CURRENT_TIMESTAMP)
+insert into genere (nome) values ('thriller'), ('horror'), ('azione'), ('romantico'), ('drammatico')
+insert into sala (nome,capacita,data_creazione) values('mastroianni',20,CURRENT_TIMESTAMP),('de sica',20,CURRENT_TIMESTAMP),('tognazzi',40,CURRENT_TIMESTAMP)
+insert into film (titolo, durata,genere_id, data_creazione) values("ocean's eleven", 116,1, CURRENT_TIMESTAMP), ("le ali della liberta",142, 1,CURRENT_TIMESTAMP), ('il cavaliere oscuro',152,3,CURRENT_TIMESTAMP), ('la grande bellezza', 150,5, CURRENT_TIMESTAMP)
+insert into film_attori (film_id,attore_id) values(1,6),(1,7),(2,1),(2,2),(4,4),(4,9),(3,1)
+insert into spettacolo(sala_id,film_id,data_creazione,prezzo,data_ora) values(1,1,CURRENT_TIMESTAMP,5,CURRENT_TIMESTAMP),(2,2,CURRENT_TIMESTAMP,5,CURRENT_TIMESTAMP),(3,3,CURRENT_TIMESTAMP,8,CURRENT_TIMESTAMP),(3,4,CURRENT_TIMESTAMP,8,CURRENT_TIMESTAMP)
+insert into utente (username,email,password,ruolo) values('admin','admin@email.com','Admin!1',2),('staff','staff@email.com','Staff!1',1)
