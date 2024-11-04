@@ -2,11 +2,10 @@ package org.elis.cinema.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.elis.cinema.dto.film.FilmDTO;
+import org.elis.cinema.dto.film.InsertFilmDTO;
 import org.elis.cinema.service.definition.FilmService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +27,16 @@ public class FilmController {
     @GetMapping("/film/bygenere/{id}")
     public ResponseEntity<List<FilmDTO>> findByGenere(@PathVariable int id) throws Exception{
             return ResponseEntity.ok(filmService.findByGenereId(id));
+    }
+    @PostMapping("/film")
+    public ResponseEntity<Void> insert(@RequestBody InsertFilmDTO filmDTO) throws Exception{
+        filmService.save(filmDTO);
+        return ResponseEntity.ok().build();
+    }
+    @PatchMapping("/film/{id}")
+    public ResponseEntity<Void> update(@RequestBody FilmDTO filmDTO, @PathVariable int id) throws Exception{
+       filmService.update(filmDTO, id);
+        return ResponseEntity.ok().build();
     }
 
 }

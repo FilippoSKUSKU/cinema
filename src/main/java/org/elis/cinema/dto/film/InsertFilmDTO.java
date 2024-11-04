@@ -14,6 +14,8 @@ import java.util.List;
 public class InsertFilmDTO {
     private String titolo;
     private Integer durata;
+//    private Long genereId;
+//    private List<Long> attoriIdList;
     private GenereDTO genere;
     private List<AttoreDTO> cast;
 }

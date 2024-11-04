@@ -16,6 +16,7 @@ public class FilmMapper{
         Film film = new Film();
         film.setId(filmDTO.getId());
         film.setTitolo(filmDTO.getTitolo());
+        film.setGenere(genereMapper.fromGenereDTO(filmDTO.getGenereDTO()));
         film.setDurata(filmDTO.getDurata());
         film.setCast(filmDTO.getCast().stream().map(attoreMapper::fromAttoreDTO).toList());
         return film;
@@ -26,6 +27,7 @@ public class FilmMapper{
         film.setTitolo(insertFilmDTO.getTitolo());
         film.setCast(insertFilmDTO.getCast().stream().map(attoreMapper::fromAttoreDTO).toList());
         film.setDurata(insertFilmDTO.getDurata());
+        film.setGenere(genereMapper.fromGenereDTO(insertFilmDTO.getGenere()));
         return film;
     }
     public FilmDTO toFilmDTO(Film film)

@@ -11,7 +11,7 @@ public interface FilmService {
     FilmDTO findById(long id) throws Exception;
     FilmDTO save(InsertFilmDTO filmDTO) throws Exception;
     List<FilmDTO> findAll() throws Exception;
-    FilmDTO update(FilmDTO filmDTO) throws Exception;
+    FilmDTO update(FilmDTO filmDTO, long id) throws Exception;
     FilmDTO deleteById(long id) throws Exception;
     List<FilmDTO> findByGenereId(long genereId) throws Exception;
 }
