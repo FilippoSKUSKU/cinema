@@ -18,9 +18,10 @@ public class FilmServiceJPA  implements FilmService {
     private final FilmRepository filmRepository;
     private final FilmMapper filmMapper;
     @Override
-    public FilmDTO findById(long id) throws EntityNotFoundException {
-        Film film = filmRepository.findById(id).orElseThrow(()->new EntityNotFoundException("Film " + id + " non trovato"));
-        return filmMapper.toFilmDTO(film);
+    public FilmDTO findById(long id) throws Exception {
+        throw new Exception("Eccezione non prevista (internal server error)");
+//        Film film = filmRepository.findById(id).orElseThrow(()->new EntityNotFoundException("Film " + id + " non trovato"));
+//        return filmMapper.toFilmDTO(film);
     }
 
     @Override

@@ -16,4 +16,5 @@ public class UtenteDTO {
     private Ruolo ruolo;
     private String username;
     private String email;
+    private String codiceFiscale;
 }

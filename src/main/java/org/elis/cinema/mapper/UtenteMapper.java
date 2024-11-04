@@ -17,6 +17,7 @@ public class UtenteMapper {
         utente.setUsername(dto.getUsername());
         utente.setEmail(dto.getEmail());
         utente.setRuolo(dto.getRuolo());
+        utente.setCodiceFiscale(dto.getCodiceFiscale());
         return utente;
     }
     public Utente fromInsertUtenteDTO(InsertUtenteDTO insertUtenteDTO) {
@@ -24,6 +25,7 @@ public class UtenteMapper {
         utente.setUsername(insertUtenteDTO.getUsername());
         utente.setPassword(insertUtenteDTO.getPassword());
         utente.setEmail(insertUtenteDTO.getEmail());
+        utente.setCodiceFiscale(insertUtenteDTO.getCodiceFiscale());
         return utente;
     }
 
@@ -33,5 +35,6 @@ public class UtenteMapper {
         utenteDTO.setUsername(utente.getUsername());
         utenteDTO.setEmail(utente.getEmail());
         utenteDTO.setRuolo(utente.getRuolo());
+        utenteDTO.setCodiceFiscale(utente.getCodiceFiscale());
         return utenteDTO;
     }}

@@ -9,7 +9,9 @@ import org.elis.cinema.mapper.UtenteMapper;
 import org.elis.cinema.model.Utente;
 import org.elis.cinema.repository.jpa.UtenteRepository;
 import org.elis.cinema.service.definition.UtenteService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -31,6 +33,10 @@ public class UtenteServiceJPA implements UtenteService {
 
     @Override
     public UtenteDTO save(InsertUtenteDTO utenteDTO) {
+        if(utenteDTO.getCodiceFiscale().isBlank())
+        {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"formato del codice fiscale invalido");
+        }
         Utente temp =  utenteRepository.save(utenteMapper.fromInsertUtenteDTO(utenteDTO));
         return utenteMapper.toUtenteDTO(temp);
     }

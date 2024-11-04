@@ -18,6 +18,7 @@ public class Utente{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String codiceFiscale;
     private String username;
     private String email;
     private String password;

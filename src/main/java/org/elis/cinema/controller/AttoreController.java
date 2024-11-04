@@ -16,37 +16,17 @@ public class AttoreController {
     private final AttoreService attoreService;
 
     @GetMapping("/attore")
-    public ResponseEntity<List<AttoreDTO>> findAll(){
-        try{
+    public ResponseEntity<List<AttoreDTO>> findAll() throws Exception{
             return ResponseEntity.ok(attoreService.findAll());
-        }
-        catch (Exception e)
-        {
-            return ResponseEntity.internalServerError().build();
-        }
-
     }
     @GetMapping("/attore/{id}")
-    public ResponseEntity<AttoreDTO> findById(@PathVariable int id){
-        try{
+    public ResponseEntity<AttoreDTO> findById(@PathVariable int id) throws Exception{
             return ResponseEntity.ok(attoreService.findById(id));
-        }
-        catch (Exception e)
-        {
-            return ResponseEntity.internalServerError().build();
-        }
 
     }
     @GetMapping("/attore/byfilm/{id}")
-    public ResponseEntity<List<AttoreDTO>> findByMovieId(@PathVariable int id){
-        try{
+    public ResponseEntity<List<AttoreDTO>> findByMovieId(@PathVariable int id) throws Exception{
             return ResponseEntity.ok(attoreService.searchByMovieId(id));
-        }
-        catch (Exception e)
-        {
-            return ResponseEntity.internalServerError().build();
-        }
-
     }
 
 }
