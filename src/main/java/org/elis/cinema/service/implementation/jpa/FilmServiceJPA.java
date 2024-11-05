@@ -11,6 +11,7 @@ import org.elis.cinema.repository.jpa.FilmRepository;
 import org.elis.cinema.service.definition.FilmService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,9 +22,9 @@ public class FilmServiceJPA  implements FilmService {
     private final AttoreMapper attoreMapper;
     @Override
     public FilmDTO findById(long id) throws Exception {
-//        throw new Exception("Eccezione non prevista (internal server error)");
-        Film film = filmRepository.findById(id).orElseThrow(()->new EntityNotFoundException("Film " + id + " non trovato"));
-        return filmMapper.toFilmDTO(film);
+        throw new NullPointerException("messaggio eccezione");
+//        Film film = filmRepository.findById(id).orElseThrow(()->new EntityNotFoundException("Film " + id + " non trovato"));
+//        return filmMapper.toFilmDTO(film);
     }
 
     @Override
@@ -50,7 +51,7 @@ public class FilmServiceJPA  implements FilmService {
         }
         if(filmDTO.getCast()!=null&&!filmDTO.getCast().isEmpty()&&filmDTO.getCast().stream().noneMatch(t->t.getId()==null||t.getId()<=0))
         {
-            temp.setCast(filmDTO.getCast().stream().map(attoreMapper::fromAttoreDTO).toList());
+            temp.setCast(new ArrayList<>(filmDTO.getCast().stream().map(attoreMapper::fromAttoreDTO).toList()));
         }
         temp = filmRepository.save(temp);
        return filmMapper.toFilmDTO(temp);

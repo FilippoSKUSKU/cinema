@@ -1,5 +1,6 @@
 package org.elis.cinema.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.elis.cinema.dto.film.FilmDTO;
 import org.elis.cinema.dto.film.InsertFilmDTO;
@@ -29,7 +30,7 @@ public class FilmController {
             return ResponseEntity.ok(filmService.findByGenereId(id));
     }
     @PostMapping("/film")
-    public ResponseEntity<Void> insert(@RequestBody InsertFilmDTO filmDTO) throws Exception{
+    public ResponseEntity<Void> insert(@Valid @RequestBody InsertFilmDTO filmDTO) throws Exception{
         filmService.save(filmDTO);
         return ResponseEntity.ok().build();
     }
