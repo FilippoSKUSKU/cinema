@@ -10,6 +10,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.util.Arrays;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -23,6 +25,12 @@ public class MySecurityConfig {
            t.requestMatchers("/all/**").permitAll();
            t.requestMatchers("/staff/**").hasAnyRole(Ruolo.STAFF.toString(), Ruolo.ADMIN.toString());
            t.requestMatchers("/admin/**").hasRole( Ruolo.ADMIN.toString());
+           t.requestMatchers("/base/**").hasAnyRole(
+                   //guardate che bellezza
+                   Arrays.stream(Ruolo.values())
+                           .map(Ruolo::toString)
+                           .toArray(String[]::new)
+           );
            t.anyRequest().authenticated();
        }) ;
        http.csrf(t->t.disable());
