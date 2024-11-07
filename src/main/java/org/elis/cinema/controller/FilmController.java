@@ -15,26 +15,26 @@ import java.util.List;
 public class FilmController {
     private final FilmService filmService;
 
-    @GetMapping("/film")
+    @GetMapping("/all/film")
     public ResponseEntity<List<FilmDTO>> findAll() throws Exception{
            return ResponseEntity.ok(filmService.findAll());
 //           return ResponseEntity.internalServerError().build();
 
     }
-    @GetMapping("/film/{id}")
+    @GetMapping("/all/film/{id}")
     public ResponseEntity<FilmDTO> findById(@PathVariable int id) throws Exception{
             return ResponseEntity.ok(filmService.findById(id));
     }
-    @GetMapping("/film/bygenere/{id}")
+    @GetMapping("/all/film/bygenere/{id}")
     public ResponseEntity<List<FilmDTO>> findByGenere(@PathVariable int id) throws Exception{
             return ResponseEntity.ok(filmService.findByGenereId(id));
     }
-    @PostMapping("/film")
+    @PostMapping("/staff/film")
     public ResponseEntity<Void> insert(@Valid @RequestBody InsertFilmDTO filmDTO) throws Exception{
         filmService.save(filmDTO);
         return ResponseEntity.ok().build();
     }
-    @PatchMapping("/film/{id}")
+    @PatchMapping("/staff/film/{id}")
     public ResponseEntity<Void> update(@RequestBody FilmDTO filmDTO, @PathVariable int id) throws Exception{
        filmService.update(filmDTO, id);
         return ResponseEntity.ok().build();

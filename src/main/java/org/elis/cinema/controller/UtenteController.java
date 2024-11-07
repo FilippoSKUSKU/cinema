@@ -18,14 +18,21 @@ public class UtenteController {
 
     private final UtenteService utenteService;
 
-    @GetMapping("/utente")
+    @GetMapping("/all/utente")
     public ResponseEntity<List<UtenteDTO>> findAll()throws Exception{
         return ResponseEntity.ok(utenteService.findAll());
     }
-    @PostMapping("/utente")
+    @PostMapping("/all/utente")
     public ResponseEntity<Void> insert(@RequestBody InsertUtenteDTO dto) throws Exception
     {
        utenteService.save(dto);
        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/all/creaUtenteStaff")
+    public ResponseEntity<Void> insertStaff(@RequestBody InsertUtenteDTO dto) throws Exception
+    {
+        utenteService.insertStaffUser(dto);
+        return ResponseEntity.ok().build();
     }
 }
