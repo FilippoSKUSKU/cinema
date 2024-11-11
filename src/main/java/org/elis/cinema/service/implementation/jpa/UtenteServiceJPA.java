@@ -2,6 +2,7 @@ package org.elis.cinema.service.implementation.jpa;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.elis.cinema.dto.utente.InsertUtenteDTO;
 import org.elis.cinema.dto.utente.LoginDTO;
 import org.elis.cinema.dto.utente.UtenteDTO;
@@ -64,6 +65,16 @@ public class UtenteServiceJPA implements UtenteService {
         temp.setRuolo(Ruolo.STAFF);
         temp.setPassword(passwordCriptata);
         temp =  utenteRepository.save(temp);
+        return utenteMapper.toUtenteDTO(temp);
+    }
+
+    @Override
+    public UtenteDTO login(LoginDTO loginDTO) throws Exception {
+        Utente temp = utenteRepository.findByUsername(loginDTO.getUsername()).orElseThrow(()->new EntityNotFoundException("Utente non trovato"));
+        if(!passwordEncoder.matches(loginDTO.getPassword(),temp.getPassword()))
+        {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Credenziali errate");
+        }
         return utenteMapper.toUtenteDTO(temp);
     }
 

@@ -12,5 +12,5 @@ public interface UtenteService {    UtenteDTO findById(long id);
     UtenteDTO update(UtenteDTO utenteDTO) throws Exception;
     UtenteDTO deleteById(long id) throws Exception;
     UtenteDTO insertStaffUser(InsertUtenteDTO dto) throws Exception;
-//    UtenteDTO login(LoginDTO loginDTO) throws Exception;
+    UtenteDTO login(LoginDTO loginDTO) throws Exception;
 }

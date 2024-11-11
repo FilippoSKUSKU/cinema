@@ -1,5 +1,7 @@
 package org.elis.cinema.errori.handler;
 
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.security.SignatureException;
 import jakarta.persistence.EntityNotFoundException;
 import org.elis.cinema.dto.errori.ErrorFieldDTO;
 import org.elis.cinema.dto.errori.MessaggioErroreDTO;
@@ -51,5 +53,24 @@ public class MyErrorHandler {
 //    public ResponseEntity<String> generalException(ResponseStatusException exception, WebRequest request){
 //
 //    }
+
+    @ExceptionHandler(SignatureException.class)
+    public ResponseEntity<MessaggioErroreDTO> signatureHandler(SignatureException exception, WebRequest request){
+        MessaggioErroreDTO dto = new MessaggioErroreDTO();
+        dto.setTimestamp(LocalDateTime.now());
+        dto.setMessaggio("Il token è stato modificato senza permesso");
+        dto.setPercorso(request.getDescription(false));
+        dto.setTipoErrore(HttpStatus.BAD_REQUEST.toString());
+        return ResponseEntity.badRequest().body(dto);
+    }
+    @ExceptionHandler(ExpiredJwtException.class)
+    public ResponseEntity<MessaggioErroreDTO> signatureHandler(ExpiredJwtException exception, WebRequest request){
+        MessaggioErroreDTO dto = new MessaggioErroreDTO();
+        dto.setTimestamp(LocalDateTime.now());
+        dto.setMessaggio("Il token è scaduto");
+        dto.setPercorso(request.getDescription(false));
+        dto.setTipoErrore(HttpStatus.BAD_REQUEST.toString());
+        return ResponseEntity.badRequest().body(dto);
+    }
 
 }
