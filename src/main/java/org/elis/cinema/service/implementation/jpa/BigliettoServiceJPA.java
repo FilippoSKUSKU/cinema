@@ -8,6 +8,7 @@ import org.elis.cinema.mapper.BigliettoMapper;
 import org.elis.cinema.model.Biglietto;
 import org.elis.cinema.repository.jpa.BigliettoRepository;
 import org.elis.cinema.service.definition.BigliettoService;
+import static org.elis.cinema.test.ClasseStatic.*;
 
 import java.util.List;
 
@@ -47,6 +48,16 @@ public class BigliettoServiceJPA implements BigliettoService {
     @Override
     public List<BigliettoDTO> findByUtenteId(long utenteId) throws Exception {
         return bigliettoRepository.findByUtenteId(utenteId).stream().map(bigliettoMapper::toBigliettoDTO).toList();
+    }
+
+
+
+
+
+
+    void test(){
+        saluta();
+        String s = stringaStatica;
     }
 
 }

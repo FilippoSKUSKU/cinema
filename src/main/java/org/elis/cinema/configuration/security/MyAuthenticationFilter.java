@@ -67,6 +67,7 @@ public class MyAuthenticationFilter extends OncePerRequestFilter {
         }
         catch (Exception e)
         {
+            e.printStackTrace();
            exceptionResolver.resolveException(request, response, null, e);
            filterChain.doFilter(request, response);
         }
