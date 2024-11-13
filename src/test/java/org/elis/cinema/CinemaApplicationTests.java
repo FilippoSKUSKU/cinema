@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.elis.cinema.dto.attore.InsertAttoreDTO;
 import org.elis.cinema.dto.utente.InsertUtenteDTO;
 import org.elis.cinema.dto.utente.LoginDTO;
+import org.elis.cinema.model.Quiz;
 import org.elis.cinema.repository.jpa.AttoreRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 
@@ -86,6 +88,14 @@ class CinemaApplicationTests {
         assertThat(attoreRepository.findById(1L).get().getDataCreazione()).isBefore(LocalDateTime.now());
         Assertions.assertNotNull(attoreRepository.findById(2L));
 
+    }
+
+    @Test
+    void restTemplateTest(){
+        RestTemplate restTemplate = new RestTemplate();
+        Quiz quiz = restTemplate.getForObject("https://opentdb.com/api.php?amount=10", Quiz.class);
+        System.out.println(quiz);
+        assertThat(quiz).isNotNull();
     }
 
 }
